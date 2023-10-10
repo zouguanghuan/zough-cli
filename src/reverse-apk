@@ -1,0 +1,17 @@
+// 引入 shelljs 模块
+const shell = require('shelljs');
+// apk 反编译增加debug模式
+// 使用 apptool 反编译 apk 文件,会生成apK名称对应的文件夹
+shell.exec('apptool d zyzq.apk');
+
+// 使用apptool 打包
+shell.exec('apptool b zyzq -o zyzqdebug.apk')
+
+// 利用jre生成签名证书, 别名是 zsname, 生成的文件名字是 test.keystore, 36500 是 100年
+shell.exec('keytool -genkey -alias zsname -keyalg RSA -keysize 2048 -validity 36500 -keystore test.keystore')
+
+// 查看生成证书的信息,生成的证书叫做test.keystore
+shell.exec('keytool -list -v -keystore test.keystore)
+
+// 将zyzqdebug.apk 进行签名
+shell.exec('jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore test.keystore -storepass hsdztest123 zyzqdebug.apk zsname')

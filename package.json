@@ -1,0 +1,19 @@
+{
+  "name": "zough",
+  "version": "1.0.0",
+  "description": "制作自己的cli工具",
+  "main": "src/index.js",
+  "bin": {
+    "zough": "bin/zough.js",
+    "winnerjs": "bin/winnerjs"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "author": "zough41914",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "shelljs": "^0.8.5"
+  }
+}
